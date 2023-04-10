@@ -1,0 +1,8 @@
+adhan
+gspread
+oauth2client
+pygsheets
+datetime
+calendar
+requests
+pandas
