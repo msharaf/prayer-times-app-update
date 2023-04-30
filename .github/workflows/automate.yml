@@ -27,5 +27,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run Script
       run: |
-        cat ${{ secrets.PRAYERTIMES_SECRET }} >> prayertimes-update-sheet-387956f811cc.json
+        echo ${{ secrets.PRAYERTIMES_SECRET }} >> prayertimes-update-sheet-387956f811cc.json
         python3 praytimes.py 
