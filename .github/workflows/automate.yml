@@ -28,7 +28,7 @@ jobs:
     - name: Run Script
       run: |
         echo "$PRAYERTIMES_SECRET" >> prayertimes-update-sheet-387956f811cc.json
-        python3 praytimes.py 
+        cat prayertimes-update-sheet-387956f811cc.json
       shell: bash
       env:
         MY_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
