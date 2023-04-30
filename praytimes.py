@@ -6,6 +6,7 @@ import requests
 import pygsheets
 import datetime
 import calendar
+from hijri_converter import Hijri, Gregorian
 
 ### Get Current Date
 now = datetime.datetime.now()
@@ -14,21 +15,12 @@ month = now.month
 
 days_in_month = calendar.monthrange(year, month)[1]
 
-#### get Hijri Dates for current month
 
-url = "https://api.aladhan.com/v1/gToHCalendar/{month}/{year}"
-hijri_dates = requests.get(url).json()
-# print(hijri_dates)    
-# print(hijri_dates['data'][0]['gregorian'])
-# with open('prayertimes-update-sheet-387956f811cc.json') as source:
-#     info = json.load(source)
-# credentials = service_account.Credentials.from_service_account_info(info)
+current_month_number = datetime.datetime.now().month
+current_month_name = datetime.datetime.strftime(datetime.datetime.strptime(str(current_month_number), '%m'), '%B')
 
 client = pygsheets.authorize(service_account_file='prayertimes-update-sheet-387956f811cc.json')
-
-
 sheet = client.open_by_key('1wHhQfnG1oUn4OYldR-LDV_4zHHCd3_pXYgp3so5uwYw')
-
 wks = sheet.worksheet_by_title('Sheet2')
 # print(wks)
 
@@ -46,9 +38,10 @@ for x in range(1,num_of_rows):
     row = wks.get_row(x, include_tailing_empty=False)
     for y in range(1,days_in_month):
         if(row[0]== str(month) and row[1] == str(y) ):
-            print(row)
-            print(hijri_dates['data'][y]['gregorian'])
-            date_values=[row[3]]
+            hijri_date = Gregorian(year, month, y).to_hijri()
+            # print(hijri_date)
+            hijri_date_tuple = date_tuple=hijri_date.datetuple()
+            date_values=[row[1],row[2],row[8],row[3],row[4],row[9],row[5],row[10],row[6],row[7],row[11],hijri_date.month_name(),hijri_date_tuple[2],hijri_date_tuple[0],current_month_name,year,hijri_date.day_name()]
             wks1.update_row(y, date_values)
 
 
