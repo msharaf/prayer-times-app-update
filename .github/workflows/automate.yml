@@ -13,10 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  run-automation:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -27,6 +25,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
+    - name: Run Script
       run: |
+        cat ${{ secrets.PRAYERTIMES_SECRET }} >> prayertimes-update-sheet-387956f811cc.json
         python3 praytimes.py 
