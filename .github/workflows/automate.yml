@@ -39,11 +39,14 @@ jobs:
       if: steps.run_script.outcome != 'success'
       uses: nobrayner/discord-webhook@v1
       with:
-        content: 'Monthly calendar updated has FAILED'
-        url: ${{ secrets.DISCORD_WEBHOOK }}                
+        github-token: ${{ secrets.github_token }}
+        discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}     
+        description: "failed"          
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
       uses: nobrayner/discord-webhook@v1
       with:
-        content: 'Monthly calendar has been updated'
-        url: ${{ secrets.DISCORD_WEBHOOK }}
+        github-token: ${{ secrets.github_token }}
+        discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        description: "passed"
+
