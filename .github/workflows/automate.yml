@@ -32,6 +32,7 @@ jobs:
       id: run_script
       run: |
         echo "$PRAYERTIMES_SECRET" >> prayertimes-update-sheet-387956f811cc.json
+        python praytimes.py
       shell: bash
       env:
         PRAYERTIMES_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
