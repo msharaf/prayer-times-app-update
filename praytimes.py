@@ -20,7 +20,8 @@ current_month_number = datetime.datetime.now().month
 current_month_name = datetime.datetime.strftime(datetime.datetime.strptime(str(current_month_number), '%m'), '%B')
 
 client = pygsheets.authorize(service_account_file='prayertimes-update-sheet-387956f811cc.json')
-sheet = client.open_by_key('1wHhQfnG1oUn4OYldR-LDV_4zHHCd3_pXYgp3so5uwYw')
+# sheet = client.open_by_key('1wHhQfnG1oUn4OYldR-LDV_4zHHCd3_pXYgp3so5uwYw')
+sheet = client.open_by_key('1BmoygJSbCiYXu-ZzR_CgyWAm-rlO5fGVsnyRucSFBwU')
 wks = sheet.worksheet_by_title('Sheet2')
 # print(wks)
 
