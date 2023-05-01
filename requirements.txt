@@ -6,3 +6,4 @@ datetime
 requests
 pandas
 hijri-converter
+discord.py
