@@ -37,13 +37,13 @@ jobs:
         PRAYERTIMES_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
     - name: Failure notification
       if: steps.run_script.outcome != 'success'
-      uses: discord/webhook
+      uses: nobrayner/discord-webhook@v1
       with:
         content: 'Monthly calendar updated has FAILED'
         url: ${{ secrets.DISCORD_WEBHOOK }}                
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
-      uses: Ilshidur/action-discord@master
+      uses: nobrayner/discord-webhook@v1
       with:
         content: 'Monthly calendar has been updated'
         url: ${{ secrets.DISCORD_WEBHOOK }}
