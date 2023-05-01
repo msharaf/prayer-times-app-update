@@ -32,22 +32,23 @@ jobs:
       id: run_script
       run: |
         echo "$PRAYERTIMES_SECRET" >> prayertimes-update-sheet-387956f811cc.json
-        python praytimes.py
       shell: bash
       env:
         PRAYERTIMES_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
     - name: Failure notification
       if: steps.run_script.outcome != 'success'
-      uses: nobrayner/discord-webhook@v1
-      with:
-        github-token: ${{ secrets.github_token }}
-        discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}     
-        description: "failed"          
+      shell: bash
+      run: |
+        python send_discord.py Update_Failed
+      env:
+        channel_number: ${{ secrets.CHANNEL_NUMBER }}  
+        discord_client_secret: ${{secrets.DISCORD_CLIENT_SECRET}}          
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
-      uses: nobrayner/discord-webhook@v1
-      with:
-        github-token: ${{ secrets.github_token }}
-        discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        description: "passed"
+      shell: bash
+      run: |
+        python send_discord.py Update_PASSED
+      env:
+        channel_number: ${{ secrets.CHANNEL_NUMBER }}  
+        discord_client_secret: ${{secrets.DISCORD_CLIENT_SECRET}}  
 
