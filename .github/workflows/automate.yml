@@ -32,21 +32,18 @@ jobs:
       id: run_script
       run: |
         echo "$PRAYERTIMES_SECRET" >> prayertimes-update-sheet-387956f811cc.json
-
       shell: bash
       env:
         PRAYERTIMES_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
     - name: Failure notification
       if: steps.run_script.outcome != 'success'
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
+      uses: discord/webhook
       with:
-        args: 'Monthly calendar updated has FAILED'                
+        content: 'Monthly calendar updated has FAILED'
+        url: ${{ secrets.DISCORD_WEBHOOK }}                
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'Monthly calendar has been updated'
+        content: 'Monthly calendar has been updated'
+        url: ${{ secrets.DISCORD_WEBHOOK }}
