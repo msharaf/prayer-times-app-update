@@ -6,4 +6,4 @@ datetime
 requests
 pandas
 hijri-converter
-discord.py
+discord.py==1.7.3
