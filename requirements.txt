@@ -6,4 +6,4 @@ datetime
 requests
 pandas
 hijri-converter
-discord.py==1.7.3
+iscordwebhook==1.0.3

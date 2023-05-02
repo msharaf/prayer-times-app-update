@@ -41,14 +41,12 @@ jobs:
       run: |
         python send_discord.py Update_Failed
       env:
-        CHANNEL_NUMBER: ${{ secrets.channel_number }}  
-        DISCORD_CLIENT_SECRET: ${{secrets.discord_client_secret}}          
+        DISCORD_URL: ${{ secrets.discord_url }}          
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
       shell: bash
       run: |
         python send_discord.py Update_PASSED
       env:
-        channel_number: ${{ secrets.CHANNEL_NUMBER }}  
-        discord_client_secret: ${{secrets.DISCORD_CLIENT_SECRET}}  
+        DISCORD_URL: ${{ secrets.discord_url }}   
 
