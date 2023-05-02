@@ -32,6 +32,7 @@ jobs:
       id: run_script
       run: |
         echo "$PRAYERTIMES_SECRET" >> prayertimes-update-sheet-387956f811cc.json
+        python praytimes.py
       shell: bash
       env:
         PRAYERTIMES_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
@@ -39,14 +40,14 @@ jobs:
       if: steps.run_script.outcome != 'success'
       shell: bash
       run: |
-        python send_discord.py Update_Failed
+        python send_discord.py ICCT_APP_UPDATED
       env:
         DISCORD_URL: ${{ secrets.DISCORD_URL }}          
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
       shell: bash
       run: |
-        python send_discord.py Update_PASSED
+        python send_discord.py ICCT_APP_UPDATED
       env:
         DISCORD_URL: ${{ secrets.discord_url }}   
 
