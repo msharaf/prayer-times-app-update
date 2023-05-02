@@ -2,8 +2,8 @@ import discord
 import sys
 import os
 
-channel_number = os.environ['CHANNEL_NUMBER']
-discord_client_secret = os.environ['DISCORD_CLIENT_SECRET']
+channel_number = os.environ['channel_numberR']
+discord_client_secret = os.environ['discord_client_secret']
 print(channel_number)
 print(discord_client_secret)
 # Set up a Discord client
