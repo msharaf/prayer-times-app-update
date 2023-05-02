@@ -41,7 +41,7 @@ jobs:
       run: |
         python send_discord.py Update_Failed
       env:
-        DISCORD_URL: ${{ secrets.discord_url }}          
+        DISCORD_URL: ${{ secrets.DISCORD_URL }}          
     - name: Discord notification
       if: steps.run_script.outcome == 'success'
       shell: bash
