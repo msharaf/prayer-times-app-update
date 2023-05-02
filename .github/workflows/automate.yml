@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '3 4 * * *'    
+    - cron:  '0 4 1 * *'    
 
 permissions:
   contents: read
@@ -40,7 +40,7 @@ jobs:
       if: steps.run_script.outcome != 'success'
       shell: bash
       run: |
-        python send_discord.py ICCT_APP_UPDATED
+        python send_discord.py ICCT_APP_FAILED
       env:
         DISCORD_URL: ${{ secrets.DISCORD_URL }}          
     - name: Discord notification
