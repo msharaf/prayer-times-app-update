@@ -2,3 +2,4 @@
 Automate the update of ICCT APP
 update
 REPO_NAME=prayer-times-app-update
+TODAYS_DATE=2024-01-02T03:51:22
