@@ -13,11 +13,11 @@ jobs:
       - uses: actions/checkout@v2
             # Runs a set of commands using the runners shell
       - name: Run a one-line script
-        run: echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
         
       - name: Update README.md
         run: |
-          echo "REPO_NAME=${{ github.event.repository.name }}" >> README.md
+          echo "TODAYS_DATE=$NOW" >> README.md
           cat README.md
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
