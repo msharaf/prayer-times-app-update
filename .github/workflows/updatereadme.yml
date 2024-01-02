@@ -17,7 +17,7 @@ jobs:
         
       - name: Update README.md
         run: |
-          echo "# prayer-times-app-update \n Automate the update of ICCT APP TODAYS_DATE=$NOW" > README.md
+          echo -e "# prayer-times-app-update \n Automate the update of ICCT APP TODAYS_DATE=$NOW" > README.md
           cat README.md
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
