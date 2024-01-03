@@ -41,7 +41,7 @@ jobs:
       if: steps.run_script.outcome != 'success'
       shell: bash
       run: |
-        python send_discord.py ICCT_APP_FAILED
+        python send_discord.py ICWL_APP_FAILED
       env:
         DISCORD_URL: ${{ secrets.DISCORD_URL }}          
     - name: Discord notification
