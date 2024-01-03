@@ -43,5 +43,8 @@ for x in range(1,num_of_rows+1):
             hijri_date = Gregorian(year, month, y).to_hijri()
             # print(hijri_date)
             hijri_date_tuple = date_tuple=hijri_date.datetuple()
-            date_values=[row[1],row[2],row[8],row[3],row[4],row[9],row[5],row[10],row[6],row[7],row[11],hijri_date.month_name(),hijri_date_tuple[2],hijri_date_tuple[0],current_month_name,year,hijri_date.day_name()]
+            if( hijri_date.day_name()) == "Friday":
+                date_values=[row[1],row[2],row[8],row[3],row[4],'13:00',row[5],row[10],row[6],row[7],row[11],hijri_date.month_name(),hijri_date_tuple[2],hijri_date_tuple[0],current_month_name,year,hijri_date.day_name()]
+            else:    
+                date_values=[row[1],row[2],row[8],row[3],row[4],row[9],row[5],row[10],row[6],row[7],row[11],hijri_date.month_name(),hijri_date_tuple[2],hijri_date_tuple[0],current_month_name,year,hijri_date.day_name()]
             wks1.update_row(y, date_values)
