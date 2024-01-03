@@ -5,10 +5,10 @@ name: Python application
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 4 1 * *'    
@@ -33,7 +33,7 @@ jobs:
       id: run_script
       run: |
         echo "$PRAYERTIMES_SECRET" >> prayertimes-update-sheet-387956f811cc.json
-        python praytimes.py
+        python praytimes_icwl.py
       shell: bash
       env:
         PRAYERTIMES_SECRET: ${{secrets.PRAYERTIMES_SECRET}}  
